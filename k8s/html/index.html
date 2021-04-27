@@ -1,124 +1,131 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <title>Food</title>
-	<style>
-	.banner {
-  background: #a770ef;
-  background: -webkit-linear-gradient(to right, #185a9d, #43cea2);
-  background: linear-gradient(to right, #185a9d, #43cea2);
-}
-.lds-ellipsis {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
-}
-.lds-ellipsis div {
-  position: absolute;
-  top: 33px;
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  background: #fff;
-  animation-timing-function: cubic-bezier(0, 1, 1, 0);
-}
-.lds-ellipsis div:nth-child(1) {
-  left: 8px;
-  animation: lds-ellipsis1 0.6s infinite;
-}
-.lds-ellipsis div:nth-child(2) {
-  left: 8px;
-  animation: lds-ellipsis2 0.6s infinite;
-}
-.lds-ellipsis div:nth-child(3) {
-  left: 32px;
-  animation: lds-ellipsis2 0.6s infinite;
-}
-.lds-ellipsis div:nth-child(4) {
-  left: 56px;
-  animation: lds-ellipsis3 0.6s infinite;
-}
-@keyframes lds-ellipsis1 {
-  0% {
-    transform: scale(0);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-@keyframes lds-ellipsis3 {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(0);
-  }
-}
-@keyframes lds-ellipsis2 {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(24px, 0);
-  }
-}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <title>Food</title>
+  <style>
+    .banner {
+      background: #a770ef;
+      background: -webkit-linear-gradient(to right, #185a9d, #43cea2);
+      background: linear-gradient(to right, #185a9d, #43cea2);
+    }
 
-</style>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
-  </head>
-  <body>
+    .lds-ellipsis {
+      display: inline-block;
+      position: relative;
+      width: 80px;
+      height: 80px;
+    }
 
+    .lds-ellipsis div {
+      position: absolute;
+      top: 33px;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: #fff;
+      animation-timing-function: cubic-bezier(0, 1, 1, 0);
+    }
 
-<div class="container-fluid">
-  <div class="px-lg-5">
+    .lds-ellipsis div:nth-child(1) {
+      left: 8px;
+      animation: lds-ellipsis1 0.6s infinite;
+    }
 
-    <div class="row py-5">
-      <div class="col-lg-12 mx-auto">
-        <div class="text-white p-5 shadow-sm rounded banner">
-          <h1 class="display-4">Food</h1>
-          <p class="lead">Delicious. Yum. Tasty.</p>
+    .lds-ellipsis div:nth-child(2) {
+      left: 8px;
+      animation: lds-ellipsis2 0.6s infinite;
+    }
+
+    .lds-ellipsis div:nth-child(3) {
+      left: 32px;
+      animation: lds-ellipsis2 0.6s infinite;
+    }
+
+    .lds-ellipsis div:nth-child(4) {
+      left: 56px;
+      animation: lds-ellipsis3 0.6s infinite;
+    }
+
+    @keyframes lds-ellipsis1 {
+      0% {
+        transform: scale(0);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes lds-ellipsis3 {
+      0% {
+        transform: scale(1);
+      }
+
+      100% {
+        transform: scale(0);
+      }
+    }
+
+    @keyframes lds-ellipsis2 {
+      0% {
+        transform: translate(0, 0);
+      }
+
+      100% {
+        transform: translate(24px, 0);
+      }
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+
+  <div class="container-fluid">
+    <div class="px-lg-5">
+
+      <div class="row py-5">
+        <div class="col-lg-12 mx-auto">
+          <div class="text-white p-5 shadow-sm rounded banner">
+            <h1 class="display-4">Food</h1>
+            <p class="lead">Delicious. Yum. Tasty.</p>
+          </div>
         </div>
       </div>
+
+      <div class="row image-container">
+
+        <div class="lds-ellipsis">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+
+        <script>
+          $(document).ready(function() {
+            $.getJSON("https://images-gateway-6mvvdjm1.uc.gateway.dev/images") // Modify this to match API Gateway URL
+              .done(function(data) {
+                var html = '';
+                $.each(data, function(i, item) {
+
+                  html += '<div class="col-xl-3 col-lg-4 col-md-6 mb-4"><div class="bg-white rounded shadow-sm"><img src="' + item.url + '" alt="" class="img-fluid card-img-top"><div class="p-4"><h5> <a href="#" class="text-dark">' + item
+                    .name + '</a></h5></div></div></div>';
+
+                  console.log(item);
+                });
+                $('.image-container').html(html)
+              });
+          });
+        </script>
+
+      </div>
     </div>
-	
-	
-
-    <div class="row image-container">
-    
-        <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
-
-		<script>
-	
-	$(document).ready(function () {
-	$.getJSON("https://images-gateway-6mvvdjm1.uc.gateway.dev/images")
-    .done(function( data ) {
-		var html = '';
-      $.each( data, function( i, item ) {
-	  
-      html += '<div class="col-xl-3 col-lg-4 col-md-6 mb-4"><div class="bg-white rounded shadow-sm"><img src="' + item.url + '" alt="" class="img-fluid card-img-top"><div class="p-4"><h5> <a href="#" class="text-dark">' + item.name + '</a></h5></div></div></div>';
-	  
-        console.log(item);
-      });
-	  $('.image-container').html( html )
-    });
-});
-	
-</script>
-	
-
-
-
-    </div>
-</div>
-
 
 </body>
 </html>

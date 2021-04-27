@@ -7,4 +7,4 @@ runtime: php74
 # entrypoint: serve index.php
 
 env_variables:
-  GOOGLE_STORAGE_BUCKET: edingco-cis680-final-project.appspot.com
+  GOOGLE_STORAGE_BUCKET: edingc-image-gallery.appspot.com # Modify this to match App Engine storage bucket

@@ -14,7 +14,7 @@ paths:
       summary: get all images
       operationId: get
       x-google-backend:
-        address: https://edingco-cis680-final-project.uc.r.appspot.com/
+        address: https://edingco-cis680-final-project.uc.r.appspot.com/ # Modify this to match App Engine backend
       responses:
         '200':
           description: Returns all images
