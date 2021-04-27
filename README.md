@@ -107,9 +107,41 @@ gcloud api-gateway gateways create image-gallery-gateway \
   --location=us-central1
 ```
 
-"Describe" the gateway to discover the public URL:
+"Describe" the gateway to discover the public URL ("defaultHostname"):
 
 ```
 gcloud api-gateway gateways describe image-gallery-gateway \
   --location=us-central1
 ```
+
+Visiting the URL with ```/images``` appended (e.g. https://image-gallery-gateway-17z2baze.uc.gateway.dev/images) should display the listing of files in the Cloud Storage bucket:
+
+ ```
+ [{"name":"brussels.jpg","url":"https://edingc-image-gallery.appspot.com.storage.googleapis.com/brussels.jpg"},{"name":"carne.jpg","url":"https://edingc-image-gallery.appspot.com.storage.googleapis.com/carne.jpg"},{"name":"carrots.jpg","url":"https://edingc-image-gallery.appspot.com.storage.googleapis.com/carrots.jpg"},{"name":"chicken.jpg","url":"https://edingc-image-gallery.appspot.com.storage.googleapis.com/chicken.jpg"},{"name":"chinese.jpg","url":"https://edingc-image-gallery.appspot.com.storage.googleapis.com/chinese.jpg"},{"name":"eggs.jpg","url":"https://edingc-image-gallery.appspot.com.storage.googleapis.com/eggs.jpg"},{"name":"shrimp.jpg","url":"https://edingc-image-gallery.appspot.com.storage.googleapis.com/shrimp.jpg"},{"name":"steak.jpg","url":"https://edingc-image-gallery.appspot.com.storage.googleapis.com/steak.jpg"},{"name":"steak2.jpg","url":"https://edingc-image-gallery.appspot.com.storage.googleapis.com/steak2.jpg"},{"name":"wings.jpg","url":"https://edingc-image-gallery.appspot.com.storage.googleapis.com/wings.jpg"}]
+ ```
+
+Make note of the API URL. It will be needed for configuration of the gallery webpage.
+
+ ## Deploy Gallery Container Image to Container Registry
+
+ The actual webpage displaying the images is an HTML page hosted on a customized nginx Docker image. The page calls the API URL to load the images through AJAX. Later, the Docker image will be made highly available through Kubernetes.
+
+Change the working directory to the location of the Dockerfile and HTML:
+
+ ```cd ~/gc-image-gallery/k8s```
+
+Modify the webpage (line 112) to point to the API URL using the Cloud Shell editor (HTML file is in `html` subdirectory):
+
+```
+$(document).ready(function() {
+ $.getJSON("https://image-gallery-gateway-17z2baze.uc.gateway.dev/images") // Modify this to match API Gateway URL
+  .done(function(data) {
+```
+
+Build the custom nginx Docker image using the Dockerfile in the directory:
+
+```docker build -t gcr.io/${PROJECT_ID}/image-gallery .```
+
+Push the customized Docker image to the container registry:
+
+```docker push gcr.io/${PROJECT_ID}/image-gallery```
