@@ -1,0 +1,22 @@
+# openapi2-functions.yaml
+swagger: '2.0'
+info:
+  title: images-api
+  description: Basic API for retreving image list from GAE
+  version: 1.0.0
+schemes:
+  - https
+produces:
+  - application/json
+paths:
+  /images:
+    get:
+      summary: get all images
+      operationId: get
+      x-google-backend:
+        address: https://edingco-cis680-final-project.uc.r.appspot.com/
+      responses:
+        '200':
+          description: Returns all images
+          schema:
+            type: string
