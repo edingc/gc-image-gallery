@@ -1,5 +1,7 @@
 # Google Cloud Image Gallery
 
+## Getting Started
+
 Create a new Google Cloud project from the console.
 
 Open a new Google Cloud Shell. All reamining commands executured through a Google Cloud Shell.
@@ -76,3 +78,38 @@ This project uses an unauthenticated API gateway to frontend the Google App Engi
 Deploy a new API Gateway. You will be prompted to enable the API Gateway service:
 
 ```gcloud api-gateway apis create image-gallery-api```
+
+The API specification template must be modified to point to the Google App Engine instance. First, change the working directory to the location of the API template:
+
+```cd ~/gc-image-gallery/api-gateway```
+
+Modify the template using the Cloud Shell editor to point to the Google App Engine URL:
+
+```
+
+x-google-backend:
+  address: https://edingc-image-gallery.uc.r.appspot.com/ # Modify this to match App Engine backend
+```
+
+The App Engine service account must be used to deploy the API configuration. This account can be found in the Google Cloud Console on the **IAM** screen:
+
+```
+gcloud api-gateway api-configs create image-gallery-config \
+  --api=image-gallery-api --openapi-spec=openapi2-functions.yaml \
+  --backend-auth-service-account=edingc-image-gallery@appspot.gserviceaccount.com
+```
+
+Once the configuration is created, deploy the configuration to an API Gateway:
+
+```
+gcloud api-gateway gateways create image-gallery-gateway \
+  --api=image-gallery-api --api-config=image-gallery-config \
+  --location=us-central1
+```
+
+"Describe" the gateway to discover the public URL:
+
+```
+gcloud api-gateway gateways describe image-gallery-gateway \
+  --location=us-central1
+```
