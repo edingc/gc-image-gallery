@@ -145,3 +145,70 @@ Build the custom nginx Docker image using the Dockerfile in the directory:
 Push the customized Docker image to the container registry:
 
 ```docker push gcr.io/${PROJECT_ID}/image-gallery```
+
+## Deploy Container Image to Kubernetes
+
+Set the compute zone to `us-central1-a`. This will also require the compute API to be enabled:
+
+```gcloud config set compute/zone us-central1-a```
+
+Enable the containers API:
+
+```gcloud services enable container.googleapis.com```
+
+Create a Kubernetes cluster for the image gallery application:
+
+```gcloud container clusters create image-gallery-cluster```
+
+Configure ```kubectl``` with the credentials for the newly-created cluster:
+
+```gcloud container clusters get-credentials image-gallery-cluster --zone us-central1-a```
+
+Deploy the customized Docker image and create three replicas:
+
+kubectl create deployment image-gallery --image=gcr.io/${PROJECT_ID}/image-gallery
+kubectl scale deployment image-gallery --replicas=3
+
+`kubectl get pods` displays the running replicas:
+
+```
+NAME                            READY   STATUS    RESTARTS   AGE
+image-gallery-ff9688f98-hfd4p   1/1     Running   0          70s
+image-gallery-ff9688f98-kqzhf   1/1     Running   0          70s
+image-gallery-ff9688f98-tgk5t   1/1     Running   0          90s
+```
+
+To access the containers from the Internet, they must be configured behind a load balancer service:
+
+```kubectl expose deployment image-gallery --name=image-gallery-service --type=LoadBalancer --port 80 --target-port 80```
+
+After a few minutes, the external IP of the cluster can be obtained by running `kubectl get service`:
+
+```
+NAME                    TYPE           CLUSTER-IP     EXTERNAL-IP       PORT(S)        AGE
+image-gallery-service   LoadBalancer   10.3.246.116   104.197.137.136   80:31510/TCP   3m24s
+```
+
+Visiting the IP address will display the image gallery. (Be patient, the initial load can take a few seconds!)
+
+## Cleaning Up
+
+The following commands can be used to remove things created by this tutorial:
+
+```
+gcloud container clusters delete image-gallery-cluster --zone us-central1-a
+gcloud container images delete  gcr.io/${PROJECT_ID}/image-gallery
+gcloud api-gateway gateways delete image-gallery-gateway --location=us-central1
+gcloud api-gateway api-configs delete image-gallery-config --api=image-gallery-api
+```
+
+Endpoints must be deleted as well:
+
+```
+gcloud endpoints services list
+gcloud endpoints services delete image-gallery-api-15k9sripxs7kq.apigateway.edingc-image-gallery.cloud.goog
+```
+
+Finally, delete the project:
+
+```gcloud projects delete ${PROJECT_ID}```
