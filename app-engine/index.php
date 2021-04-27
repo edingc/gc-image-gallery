@@ -51,7 +51,7 @@ function get_objects($bucket)
 {
     $objects = array();
     $storage = new StorageClient();
-    $bucket = $storage->bucket($bucket); 
+    $bucket = $storage->bucket($bucket);
     foreach ($bucket->objects() as $object) {
         $url = 'https://' . $bucket->name() . '.storage.googleapis.com/' . $object->name();
         $objInfo = array();
@@ -59,17 +59,11 @@ function get_objects($bucket)
         $objInfo["url"] = $url;
         array_push($objects, $objInfo);
     }
-
     return $objects;
-
 }
 
 header('Content-type: application/json');
-
 $objArray = get_objects($bucketName);
-
 echo json_encode($objArray,JSON_UNESCAPED_SLASHES);
 
-
 ?>
-
