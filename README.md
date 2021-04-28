@@ -4,18 +4,11 @@
 
 Create a new Google Cloud project from the console.
 
-Open a new Google Cloud Shell. All reamining commands executured through a Google Cloud Shell.
+Open a new Google Cloud Shell. All reamining commands executured through a Google Cloud Shell. Ensure the active project is the one just created.
 
 First, create an environment variable with the same of your project ID:
 
 ```export PROJECT_ID=edingc-image-gallery```
-
-Create a new Google Cloud project and set it as the active project in Cloud Shell.
-
-```
-gcloud projects create ${PROJECT_ID}
-gcloud config set project ${PROJECT_ID}
-```
 
 Clone this repository to the Cloud Shell and enter the directory:
 
