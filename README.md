@@ -4,7 +4,7 @@
 
 Create a new Google Cloud project from the console.
 
-Open a new Google Cloud Shell. All reamining commands executured through a Google Cloud Shell. Ensure the active project is the one just created.
+Open a new Google Cloud Shell. All remaining commands are executed through Google Cloud Shell. Ensure the active project is the one just created.
 
 First, create an environment variable with the same of your project ID:
 
