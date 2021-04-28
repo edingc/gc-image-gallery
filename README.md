@@ -175,7 +175,7 @@ image-gallery-ff9688f98-tgk5t   1/1     Running   0          90s
 To access the containers from the Internet, they must be configured behind a load balancer service:
 
 ```
-kubectl expose deployment image-gallery --name=image-gallery-service \ 
+kubectl expose deployment image-gallery --name=image-gallery-service \
 --type=LoadBalancer --port 80 --target-port 80
 ```
 
