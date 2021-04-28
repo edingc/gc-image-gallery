@@ -36,7 +36,7 @@ The images will be served from this bucket, so they need to be made publicly acc
 
 ```gsutil iam ch allUsers:objectViewer gs://edingc-image-gallery.appspot.com/```
 
-The image API is served through a PHP API on Google App Engine. It is a modified version of Google's example application for interacting with Cloud Storage buckets.
+The image API is served through a PHP application on Google App Engine. It is a modified version of Google's example application for interacting with Cloud Storage buckets.
 
 Change directories to the code for the App Engine:
 
@@ -79,7 +79,6 @@ The API specification template must be modified to point to the Google App Engin
 Modify the template using the Cloud Shell editor to point to the Google App Engine URL:
 
 ```
-
 x-google-backend:
   address: https://edingc-image-gallery.uc.r.appspot.com/ # Modify this to match App Engine backend
 ```
@@ -159,8 +158,10 @@ Configure ```kubectl``` with the credentials for the newly-created cluster:
 
 Deploy the customized Docker image and create three replicas:
 
+```
 kubectl create deployment image-gallery --image=gcr.io/${PROJECT_ID}/image-gallery
 kubectl scale deployment image-gallery --replicas=3
+```
 
 `kubectl get pods` displays the running replicas:
 
